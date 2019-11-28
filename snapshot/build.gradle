@@ -1,0 +1,8 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+dependencies {
+    implementation deps.kotlin.stdlib
+    implementation deps.kotlin.reflect
+    compileOnly deps.junit
+}

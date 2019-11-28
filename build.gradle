@@ -1,0 +1,55 @@
+apply plugin: 'com.github.ben-manes.versions'
+
+buildscript {
+    ext.versions = [
+        kotlin    : '1.3.60',
+        targetSdk : 29,
+        compileSdk: 29,
+        minSdk    : 23
+    ]
+
+    ext.plugs = [
+        agp     : "com.android.tools.build:gradle:3.5.2",
+        kotlin  : "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}",
+        versions: "com.github.ben-manes:gradle-versions-plugin:0.20.0"
+    ]
+
+    ext.deps = [
+        kotlin  : [
+            stdlib : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}",
+            reflect: "org.jetbrains.kotlin:kotlin-reflect:${versions.kotlin}",
+        ],
+        androidx: [
+            appcompat: 'androidx.appcompat:appcompat:1.0.2',
+            core     : 'androidx.core:core-ktx:1.0.2',
+            test     : [
+                espresso: 'androidx.test.espresso:espresso-core:3.2.0',
+                junit   : 'androidx.test.ext:junit:1.1.1'
+            ]
+        ],
+        junit   : 'junit:junit:4.12',
+        hamcrest: "org.hamcrest:hamcrest-core:1.3",
+    ]
+
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath plugs.agp
+        classpath plugs.versions
+        classpath plugs.kotlin
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
