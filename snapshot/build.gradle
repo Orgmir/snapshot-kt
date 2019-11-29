@@ -6,3 +6,5 @@ dependencies {
     implementation deps.kotlin.reflect
     compileOnly deps.junit
 }
+
+apply from: "$rootDir/gradle/gradle-mvn-push.gradle"
